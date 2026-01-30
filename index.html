@@ -1,0 +1,384 @@
+<!doctype html><html lang='pt-BR'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+            <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'>
+            <style>*{box-sizing:border-box;}body{padding:1rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}/* ===== Base ===== */
+    #abert-ecad-page{
+      max-width:1200px;
+      margin:0 auto;
+      font-family:'Open Sans',sans-serif;
+      color:#2d3436;
+      line-height:1.6;
+      background:#ffffff;
+      padding:20px;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    #abert-ecad-page *{box-sizing:border-box}
+    #abert-ecad-page a{color:#004650; font-weight:700; text-decoration:underline}
+    #abert-ecad-page a:hover{opacity:.85}
+
+    /* ===== Convênio (cards + tabela) ===== */
+    .abert-box-intro{
+      background:#ffffff;
+      border-radius:20px;
+      padding:30px;
+      box-shadow:0 10px 30px rgba(0,70,80,.10);
+      border-top:8px solid #004650;
+      margin-bottom:30px;
+    }
+
+    .abert-title-destaque{
+      color:#004650;
+      font-size:1.15rem;
+      font-weight:700;
+      margin-bottom:20px;
+    }
+
+    .abert-item-reducao{
+      background:#f8fafc;
+      padding:20px;
+      border-radius:12px;
+      border-left:6px solid #FEC525;
+      margin-bottom:15px;
+      font-size:.95rem;
+    }
+    .abert-item-reducao strong{color:#004650}
+
+    .abert-h2-title{
+      color:#004650;
+      font-size:1.4rem;
+      font-weight:800;
+      margin:35px 0 15px 0;
+      padding-left:12px;
+      border-left:6px solid #FEC525;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+    }
+
+    .abert-table-wrapper{
+      width:100%;
+      overflow-x:auto;
+      border-radius:12px;
+      border:1px solid #e2e8f0;
+      margin-bottom:10px;
+    }
+
+    .abert-table-oficial{
+      width:100%;
+      min-width:520px;
+      border-collapse:collapse;
+    }
+    .abert-table-oficial th{
+      background:#004650;
+      color:#ffffff;
+      padding:14px;
+      text-align:left;
+      font-weight:700;
+      font-size:.9rem;
+      white-space:nowrap;
+    }
+    .abert-table-oficial td{
+      padding:12px 14px;
+      border-bottom:1px solid #edf2f7;
+      font-size:.9rem;
+    }
+    .abert-table-oficial tr:nth-child(even){background:#fcfcfc}
+
+    .abert-obs-box{
+      background:#fff9e6;
+      border:1px solid #ffeeba;
+      padding:20px;
+      border-radius:12px;
+      margin:25px 0;
+    }
+    .abert-obs-box h3{
+      color:#856404;
+      font-size:1rem;
+      margin-bottom:8px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.4px;
+    }
+
+    .abert-requisitos-integrais{
+      background:#004650;
+      border-radius:20px;
+      padding:30px 25px;
+      color:#ffffff;
+      margin-top:40px;
+    }
+    .abert-requisitos-integrais h2{
+      color:#FEC525;
+      font-size:1.4rem;
+      margin-bottom:18px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+    }
+    .abert-req-item-final{
+      margin-bottom:12px;
+      font-size:1rem;
+    }
+
+    /* ===== FAQ (accordion) ===== */
+    .faq-wrapper{
+      max-width:1200px;
+      margin:40px auto 0 auto;
+    }
+    .faq-header{
+      text-align:center;
+      margin-bottom:22px;
+    }
+    .faq-header h1{
+      color:#004650;
+      font-size:2rem;
+      margin-bottom:6px;
+      font-weight:800;
+    }
+    .faq-header p{
+      color:#535c68;
+      margin:0;
+    }
+
+    .faq-item{
+      background:#fff;
+      margin-bottom:12px;
+      border-radius:12px;
+      border:1px solid #e2e8f0;
+      overflow:hidden;
+      transition:all .25s ease;
+    }
+    .faq-input{display:none}
+
+    .faq-label{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      padding:20px 22px;
+      font-weight:700;
+      font-size:1.02rem;
+      color:#004650;
+      cursor:pointer;
+      user-select:none;
+    }
+    .faq-label:hover{background:#f0f7f8}
+
+    .faq-arrow{
+      width:34px;
+      height:34px;
+      background:#004650;
+      color:#FEC525;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.35rem;
+      transition:all .35s ease;
+      flex-shrink:0;
+    }
+
+    .faq-content{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .55s cubic-bezier(0, 1, 0, 1);
+    }
+    .faq-text{
+      padding:0 22px 22px 22px;
+      color:#535c68;
+      line-height:1.85;
+      border-top:1px solid #f1f1f1;
+      padding-top:16px;
+      font-size:.95rem;
+    }
+    .faq-text ul{margin:12px 0 0 20px}
+    .faq-text li{margin-bottom:8px}
+    .faq-text strong{color:#004650}
+
+    .faq-input:checked ~ .faq-content{
+      max-height:1200px;
+      transition:max-height .75s ease-in-out;
+    }
+    .faq-input:checked ~ .faq-label .faq-arrow{
+      transform:rotate(135deg);
+      background:#FEC525;
+      color:#004650;
+    }
+
+    /* ===== Mobile ===== */
+    @media (max-width: 768px){
+      #abert-ecad-page{padding:14px}
+      .abert-box-intro{padding:20px}
+      .abert-h2-title{font-size:1.2rem}
+      .faq-header h1{font-size:1.55rem}
+      .faq-label{padding:16px 16px; font-size:.98rem}
+      .faq-text{padding:0 16px 18px 16px; padding-top:14px}
+    }</style></head><body><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet" class="">
+
+<div id="abert-ecad-page" class="">
+  
+
+  <!-- ===== CONVÊNIO (conteúdo) ===== -->
+  <div class="abert-box-intro">
+    <p class="abert-title-destaque">
+      O CONVÊNIO ABERT/ECAD proporciona desconto de até <strong class="">55%</strong> sobre o valor da retribuição autoral (broadcasting),
+      exclusivamente para emissoras associadas à ABERT, conforme o grupo populacional do município do transmissor.
+    </p>
+
+    <div class="abert-item-reducao">
+      Para ter acesso aos descontos, a emissora deve enviar sua programação musical mensal ao ECAD até o dia
+      <strong class="">5 de cada mês</strong>, em formato <strong class="">.exp</strong> ou <strong class="">.xlsx padronizado pelo ECAD</strong>
+      (Planilha de Programação Musical de Rádio).
+    </div>
+
+    <div class="abert-item-reducao">
+      Caso a emissora opte por enviar a programação em <strong class="">.xls ou .xlsx estruturado</strong> (datas de execução, títulos e intérpretes),
+      haverá <strong class="">redução de 10% no desconto</strong> ao qual teria direito.
+    </div>
+  </div>
+
+  <h2 class="abert-h2-title">Desconto por Grupo Populacional</h2>
+
+  <div class="abert-table-wrapper">
+    <table class="abert-table-oficial">
+      <thead class="">
+        <tr class="">
+          <th class="">Grupo Populacional do Município</th>
+          <th class="">Percentual de Desconto</th>
+        </tr>
+      </thead>
+      <tbody class="">
+        <tr class=""><td class="">Até 10 mil habitantes</td><td class=""><strong class="">55%</strong></td></tr>
+        <tr class=""><td class="">Acima de 10 mil até 25 mil habitantes</td><td class=""><strong class="">50%</strong></td></tr>
+        <tr class=""><td class="">Acima de 25 mil até 50 mil habitantes</td><td class=""><strong class="">45%</strong></td></tr>
+        <tr class=""><td class="">Acima de 50 mil até 75 mil habitantes</td><td class=""><strong class="">40%</strong></td></tr>
+        <tr class=""><td class="">Acima de 75 mil até 150 mil habitantes</td><td class=""><strong class="">35%</strong></td></tr>
+        <tr class=""><td class="">Acima de 150 mil até 300 mil habitantes</td><td class=""><strong class="">30%</strong></td></tr>
+        <tr class=""><td class="">Acima de 300 mil habitantes</td><td class=""><strong class="">25%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="abert-obs-box">
+    <h3 class="">Observação Importante</h3>
+    Caso o transmissor esteja instalado em município diferente daquele constante na outorga, prevalecerá o município de
+    <strong class="">maior população</strong>.
+  </div>
+
+  <div class="abert-requisitos-integrais">
+    <h2 class="">Requisitos para obtenção do desconto</h2>
+    <div class="abert-req-item-final">✔ Estar em dia com a <strong class="">ABERT</strong> e com as cobranças do <strong class="">ECAD</strong>;</div>
+    <div class="abert-req-item-final">✔ Enviar mensalmente, até o dia 5, a planilha da programação musical executada.</div>
+  </div>
+
+  <h2 class="abert-h2-title">Simulcasting (Transmissão pela Internet)</h2>
+  <div class="abert-item-reducao">
+    O valor da retribuição autoral para a transmissão simultânea da programação pela internet corresponderá a
+    <strong class="">10% do valor mensal efetivamente pago pelo broadcasting</strong>, desde que a emissora esteja adimplente e cumpra integralmente
+    as obrigações do convênio.
+  </div>
+
+  <!-- ===== FAQ ===== -->
+  <div class="faq-wrapper">
+    <header class="faq-header">
+      <h1 class="">Perguntas Frequentes - Convênio ECAD/ABERT</h1>
+      <p class="">Clique na pergunta para expandir a resposta.</p>
+    </header>
+
+    <div class="faq-item">
+      <input type="checkbox" id="abert-q1" class="faq-input">
+      <label for="abert-q1" class="faq-label">1. Quem pode aderir ao Convênio ECAD/ABERT? <span class="faq-arrow">+</span></label>
+      <div class="faq-content"><div class="faq-text">Podem aderir ao convênio exclusivamente as emissoras comerciais de rádio associadas à ABERT. Rádios educativas não estão contempladas pelo instrumento.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <input type="checkbox" id="abert-q2" class="faq-input">
+      <label for="abert-q2" class="faq-label">2. Qual é a vigência do convênio? <span class="faq-arrow">+</span></label>
+      <div class="faq-content"><div class="faq-text">O convênio tem vigência de 1º de dezembro de 2025 a 30 de novembro de 2026, podendo ser prorrogado por mais um ano, salvo manifestação contrária de uma das partes com antecedência mínima de 30 dias.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <input type="checkbox" id="abert-q3" class="faq-input">
+      <label for="abert-q3" class="faq-label">3. Qual o desconto máximo concedido pelo convênio? <span class="faq-arrow">+</span></label>
+      <div class="faq-content"><div class="faq-text">O convênio oferece desconto de até 55% sobre o valor da retribuição autoral (broadcasting), conforme o formato de envio da programação musical e localidade da emissora.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <input type="checkbox" id="abert-q4" class="faq-input">
+      <label for="abert-q4" class="faq-label">4. Quais são os formatos de envio que geram desconto? <span class="faq-arrow">+</span></label>
+      <div class="faq-content"><div class="faq-text">
+        <ul class="">
+          <li class=""><strong class="">25% de desconto:</strong> envio em formato .Exp ou arquivo .xlsx padronizado pelo Ecad (Dist 006).</li>
+          <li class=""><strong class="">15% de desconto:</strong> envio em .xls ou .xlsx, desde que os dados estejam estruturados.</li>
+        </ul>
+        Envios em formatos diferentes dos acima não geram direito a desconto.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <input type="checkbox" id="abert-q5" class="faq-input">
+      <label for="abert-q5" class="faq-label">5. O desconto por faixa populacional é automático? <span class="faq-arrow">+</span></label>
+      <div class="faq-content"><div class="faq-text">Não. O desconto adicional por faixa populacional é aplicado somente às emissoras comerciais sujeitas ao pagamento de 100% da tabela de preços do Ecad e passa a vigorar a partir da competência de janeiro de 2026. O enquadramento considera a faixa populacional do Censo do IBGE.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <input type="checkbox" id="abert-q6" class="faq-input">
+      <label for="abert-q6" class="faq-label">6. Qual município é considerado para fins de enquadramento? <span class="faq-arrow">+</span></label>
+      <div class="faq-content"><div class="faq-text">Se o transmissor estiver instalado em município diferente daquele constante na outorga, prevalecerá, para fins de classificação populacional, o município de maior população.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <input type="checkbox" id="abert-q7" class="faq-input">
+      <label for="abert-q7" class="faq-label">7. Existe desconto para transmissão simultânea pela internet? <span class="faq-arrow">+</span></label>
+      <div class="faq-content"><div class="faq-text">Sim. O simulcasting terá retribuição correspondente a 10% do valor efetivamente pago pelo broadcasting, desde que a emissora esteja adimplente com o ECAD e cumpra todas as obrigações previstas no convênio.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <input type="checkbox" id="abert-q8" class="faq-input">
+      <label for="abert-q8" class="faq-label">8. O que acontece se a emissora atrasar o pagamento? <span class="faq-arrow">+</span></label>
+      <div class="faq-content"><div class="faq-text">O atraso implica na perda automática dos descontos naquele mês; aplicação de multa, correção e juros; e caracterização da transmissão como desautorizada até a regularização.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <input type="checkbox" id="abert-q9" class="faq-input">
+      <label for="abert-q9" class="faq-label">9. Emissoras com débitos podem usufruir dos descontos? <span class="faq-arrow">+</span></label>
+      <div class="faq-content"><div class="faq-text">Não. Emissoras com débitos, inclusive por corresponsabilidade no mesmo CNPJ, perdem automaticamente todos os descontos. Os benefícios só retornam após a regularização integral.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <input type="checkbox" id="abert-q10" class="faq-input">
+      <label for="abert-q10" class="faq-label">10. Até quando a programação musical deve ser enviada? <span class="faq-arrow">+</span></label>
+      <div class="faq-content"><div class="faq-text">A programação musical deve ser enviada mensalmente, até o dia 5, contendo as informações do mês imediatamente anterior, conforme determina a Lei de Direitos Autorais.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <input type="checkbox" id="abert-q11" class="faq-input">
+      <label for="abert-q11" class="faq-label">11. O que deve constar na programação musical enviada? <span class="faq-arrow">+</span></label>
+      <div class="faq-content"><div class="faq-text">
+        <ul class="">
+          <li class="">CNPJ, razão social e nome fantasia;</li>
+          <li class="">Dial, município e UF;</li>
+          <li class="">Títulos das músicas e nomes dos intérpretes;</li>
+          <li class="">Datas, ordem de execução e repetições.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <input type="checkbox" id="abert-q12" class="faq-input">
+      <label for="abert-q12" class="faq-label">12. O convênio autoriza músicas em eventos ou shows? <span class="faq-arrow">+</span></label>
+      <div class="faq-content"><div class="faq-text">Não. A autorização abrange apenas a transmissão regular da emissora. Eventos, promoções ou shows exigem autorização específica do ECAD.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <input type="checkbox" id="abert-q13" class="faq-input">
+      <label for="abert-q13" class="faq-label">13. Há reajuste anual dos valores? <span class="faq-arrow">+</span></label>
+      <div class="faq-content"><div class="faq-text">Sim. Os valores são reajustados anualmente em janeiro, com base na variação acumulada do IPCA (IBGE) dos 12 meses anteriores.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <input type="checkbox" id="abert-q14" class="faq-input">
+      <label for="abert-q14" class="faq-label">14. O envio da programação musical é uma exigência legal? <span class="faq-arrow">+</span></label>
+      <div class="faq-content"><div class="faq-text">Sim. O envio mensal decorre do art. 68 da Lei nº 9.610/1998 (Lei de Direitos Autorais).</div></div>
+    </div>
+  </div>
+</div></body></html>
